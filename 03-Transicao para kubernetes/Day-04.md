@@ -34,7 +34,7 @@ kubectl get daemonset
 ```
 kubectl get pods -l app=node-exporter 
 ```
- # O parâmetro "-l" é um filtro para a label expecificada no manifesto. *
+_O parâmetro "-l" é um filtro para a label expecificada no manifesto._
 
 6. Verificar se os pods do node-exporter estão sendo executados em todos os nós do cluster:
 ```
