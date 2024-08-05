@@ -6,9 +6,9 @@ Cria e gerencia as réplicas de pods expecificada no Deployment. O Deployment é
 Ao criar um deployment, o replicaset é criado automaticamente, e é o replicaset que vai criar os pods que estão dentro do deployment.
 
 * Para fazer o rollback para a versão anterior de um Deployment:*
----
+```
 kubectl rollout undo deployment nome-do-deployment
----
+```
 
 ### DaemonSets:
 
