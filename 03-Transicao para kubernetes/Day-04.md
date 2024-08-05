@@ -36,6 +36,7 @@ kubectl get pods -l app=node-exporter
 ```
 _O parâmetro "-l" é um filtro para a label expecificada no manifesto._
 
+
 6. Verificar se os pods do node-exporter estão sendo executados em todos os nós do cluster:
 ```
 kubectl get pods -o wide -l app=node-exporter
@@ -49,7 +50,7 @@ kubectl describe daemonset node-exporter
 
 
 ## Observação:
-daemonset e replicaset não é possível criar via comando "kubectl create..." somente via arquivos manifesto.
+Daemonset e replicaset não são possíveis criá-los via comando "kubectl create..." somente via arquivos manifesto.
 
 
 ### Probes:
