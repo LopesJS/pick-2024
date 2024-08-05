@@ -13,61 +13,89 @@ kubectl get deployment (deplo)
 kubectlget replicaset 
 ```
 
-# Pods do sistema (-n = namespace)
-kubectl get pods -n kube-system (pods do sistema do kubernetes)
+### Pods do sistema do kubernetes (-n = namespace):
+```
+kubectl get pods -n kube-system
+```
 
-# Maiores informações na consulta (como IP e node):
+### Maiores informações na consulta (como IP e node):
+```
 kubectl get pods -n kube-system -o wide
+```
 
-# Todos os pods do cluster (-A = all)
+### Todos os pods do cluster (-A = all):
+```
 kubectl get pods -A 
+```
 
-----
 
-# Auto complete:
+### Auto complete:
 
-# Instalar o bash-completion:
+* Instalar o bash-completion:
+```
 apt install bash-completion
+```
 
-# Habilitar o completion do kubectl
+* Habilitar o completion do kubectl
 
-# Ajuda
+* Ajuda:
+```
 kubectl completion --help
+```
 
-# Referência:
+### Referências:
 https://kubernetes.io/pt-br/docs/tasks/tools/install-kubectl-linux/
 
-# Rodar um nginx:
+* Rodar um nginx:
+```
 kubectl run --image nginx --port 80
+```
 
-# Executar o bash no pod do Nginx:
+* Executar o bash no pod do Nginx:
+```
 kubectl exec -ti nome-do-pod -- bash
+```
 
-# Sair do pod:
+* Sair do pod:
+```
 exit
+```
 
-# Deletar o pod:
+* Deletar o pod:
+```
 kubectl delete pods nome-do-pod
+```
 
-# Criar Alias
+* Criar Alias:
+```
 alias k=kubectl
-# Configurar alias
-vim /root/.bash_profile
-e inserir alias k="kubectl"
+```
 
-# Exemplo do comando usando alias:
+* Configurar alias
+vim /root/.bash_profile e inserir alias k="kubectl"
+
+* Exemplo do comando usando alias:
+```
 k get pods
+```
 
-# Criar um serviço NodePort para expor um pod:
+* Criar um serviço NodePort para expor um pod:
+```
 kubectl expose pods nome-do-pod --type NodePort
+```
 
-# Deletar o serviço:
+* Deletar o serviço:
+```
 kubectl delete service nome-do-servico
+```
 
-# kubectl com dry-run: 
-#(gera em tela definições em yaml com as informações no comando):
+* kubectl com dry-run: 
+```
+# Gera em tela definições em yaml com as informações no comando:
 kubectl run --image nginx --port 80 nome-do-pod --dry-run=client -o yaml
+```
 
-#(gera arquivo em yaml com as informações no comando):
+```
+# Gera arquivo em yaml com as informações no comando:
 kubectl run --image nginx --port 80 meu-primeiro-pod --dry-run=client -o yaml > pod.yaml
-
+```
