@@ -32,8 +32,9 @@ kubectl get daemonset
 
 5. Para Verificar os pods que o DaemonSet está gerenciando:
 ```
-kubectl get pods -l app=node-exporter # o parâmetro "-l" é um filtro para a label expecificada no manifesto 
+kubectl get pods -l app=node-exporter 
 ```
+ # O parâmetro "-l" é um filtro para a label expecificada no manifesto. *
 
 6. Verificar se os pods do node-exporter estão sendo executados em todos os nós do cluster:
 ```
