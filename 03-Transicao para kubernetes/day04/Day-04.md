@@ -110,3 +110,7 @@ Muito parecido com a readinessProbe, mas a diferença é que a startupProbe é e
           successThreshold: 2 # O número de vezes que a probe precisa passar para considerar que o container está pronto
           failureThreshold: 3 # O número de vezes que a probe precisa falhar para considerar que o container não está pronto
 ```
+
+
+### Referência:
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ 
