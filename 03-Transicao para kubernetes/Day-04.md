@@ -5,7 +5,7 @@
 Cria e gerencia as réplicas de pods expecificada no Deployment. O Deployment é um objeto que cria um ReplicaSet, e o ReplicaSet é um objeto que cria um pod.
 Ao criar um deployment, o replicaset é criado automaticamente, e é o replicaset que vai criar os pods que estão dentro do deployment.
 
-* Para fazer o rollback para a versão anterior de um Deployment:*
+* Para fazer o rollback para a versão anterior de um Deployment:
 ```
 kubectl rollout undo deployment nome-do-deployment
 ```
@@ -14,37 +14,37 @@ kubectl rollout undo deployment nome-do-deployment
 
 É um objeto que cria um pod que fica rodando em todos os nodes do cluster, garantindo que pelo menos um pod esteja rodando em cada node do cluster.
 
-*Exemplo de criação um daemonset que vai garantir que todos os nós do cluster executem uma réplica do pod "node-exporter", um exporter de métricas do Prometheus.*
+Exemplo de criação um daemonset que vai garantir que todos os nós do cluster executem uma réplica do pod "node-exporter", um exporter de métricas do Prometheus.
 
 1. Criar o arquivo node-exporter-daemonset.yaml;
 
 2. Imputar as informações no arquivo;
 
 3. Criar o DaemonSet utilizando o arquivo de manifesto:
----
+```
 kubectl apply -f node-exporter-daemonset.yaml
----
+```
 
-5. Verificar a criação do DaemonSet:
----
+4. Verificar a criação do DaemonSet:
+```
 kubectl get daemonset
----
+```
 
-7. Para Verificar os pods que o DaemonSet está gerenciando:
----
+5. Para Verificar os pods que o DaemonSet está gerenciando:
+```
 kubectl get pods -l app=node-exporter # o parâmetro "-l" é um filtro para a label expecificada no manifesto 
----
+```
 
 6. Verificar se os pods do node-exporter estão sendo executados em todos os nós do cluster:
----
+```
 kubectl get pods -o wide -l app=node-exporter
----
+```
 
 7. Verificar os detalhes do DaemonSet:
    
----
+```
 kubectl describe daemonset node-exporter
----
+```
 
 
 ## Observação:
@@ -62,7 +62,7 @@ Atualmente há três tipos de probes, a livenessProbe, a readinessProbe e a star
 
 A livenessProbe é a probe de verificação de integridade, verificando se o que está rodando dentro do Pod está saudável. Sendo uma forma de testar se o que temos dentro do Pod está respondendo conforme esperado. Se por acaso o teste falhar, o Pod será reiniciado.
 
----
+```
         livenessProbe: # Aqui é onde vamos adicionar a nossa livenessProbe
           httpGet: # Aqui vamos utilizar o httpGet, onde vamos se conectar ao container através do protocolo HTTP
             path: / # Qual o endpoint que vamos utilizar para se conectar ao container
@@ -71,7 +71,7 @@ A livenessProbe é a probe de verificação de integridade, verificando se o que
           periodSeconds: 10 # A cada quantos segundos vamos executar a verificação
           timeoutSeconds: 5 # Quantos segundos vamos esperar para considerar que a verificação falhou
           failureThreshold: 3 # Quantos falhas consecutivas vamos aceitar antes de reiniciar o container
----
+```
 
 **Readiness Probe:**
 
@@ -79,7 +79,7 @@ A readinessProbe é uma forma do Kubernetes verificar se o seu container está p
 É a probe de leitura, e fica verificando se o nosso container está pronto para receber requisições, e se estiver pronto, ele irá receber requisições, caso contrário, ele não irá receber requisições, pois será removido do endpoint do serviço, fazendo com que o tráfego não chegue até ele. Ela garante que o Pod está saudável para receber requisições.
 
 
----
+```
         readinessProbe: # Onde definimos a nossa probe de leitura
           httpGet: # O tipo de teste que iremos executar, neste caso, iremos executar um teste HTTP
             path: / # O caminho que iremos testar
@@ -89,7 +89,7 @@ A readinessProbe é uma forma do Kubernetes verificar se o seu container está p
           timeoutSeconds: 5 # O tempo que iremos esperar para considerar que a probe falhou
           successThreshold: 2 # O número de vezes que a probe precisa passar para considerar que o container está pronto
           failureThreshold: 3 # O número de vezes que a probe precisa falhar para considerar que o container não está pronto
----
+```
 
 
 **Startup Probe:**
@@ -97,7 +97,7 @@ A readinessProbe é uma forma do Kubernetes verificar se o seu container está p
 Uma das probes menos utilizada, mas muito importante. Ela é a responsável por verificar se o nosso container foi inicializado corretamente, e se ele está pronto para receber requisições.
 Muito parecido com a readinessProbe, mas a diferença é que a startupProbe é executada apenas uma vez no começo da vida do nosso container, e a readinessProbe é executada de tempos em tempos.
 
----
+```
         startupProbe: # Onde definimos a nossa probe de inicialização
           httpGet: # O tipo de teste que iremos executar, neste caso, iremos executar um teste HTTP
             path: / # O caminho que iremos testar
@@ -107,4 +107,4 @@ Muito parecido com a readinessProbe, mas a diferença é que a startupProbe é e
           timeoutSeconds: 5 # O tempo que iremos esperar para considerar que a probe falhou
           successThreshold: 2 # O número de vezes que a probe precisa passar para considerar que o container está pronto
           failureThreshold: 3 # O número de vezes que a probe precisa falhar para considerar que o container não está pronto
----
+```
