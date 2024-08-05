@@ -3,13 +3,17 @@
 ### Comandos Básicos do Kubernetes:
 ```
 kubectl get nodes
-
+```
+```
 kubectl get pods (po)
-
+```
+```
 kubectl get service (svc)
-
+```
+```
 kubectl get deployment (deplo)
-
+```
+```
 kubectlget replicaset 
 ```
 
@@ -42,9 +46,6 @@ apt install bash-completion
 ```
 kubectl completion --help
 ```
-
-### Referências:
-https://kubernetes.io/pt-br/docs/tasks/tools/install-kubectl-linux/
 
 * Rodar um nginx:
 ```
@@ -99,3 +100,7 @@ kubectl run --image nginx --port 80 nome-do-pod --dry-run=client -o yaml
 # Gera arquivo em yaml com as informações no comando:
 kubectl run --image nginx --port 80 meu-primeiro-pod --dry-run=client -o yaml > pod.yaml
 ```
+
+
+### Referências:
+https://kubernetes.io/pt-br/docs/tasks/tools/install-kubectl-linux/
